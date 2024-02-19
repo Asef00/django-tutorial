@@ -7,7 +7,7 @@ from .models import Quote
 
 def index(request):
   latest_question_list = Question.objects.order_by("-pub_date")[:5]
-  random_quote = Quote.objects.get(id=1)
+  random_quote = Quote.objects.order_by('?').first()
   viewModel = {
     "latest_question_list": latest_question_list, 
     "quote_message": random_quote
