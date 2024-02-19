@@ -2,17 +2,17 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from django.utils import timezone
-from django.template import loader
 from .models import Question
+from .models import Quote
 
 def index(request):
   latest_question_list = Question.objects.order_by("-pub_date")[:5]
-  template = loader.get_template("polls/index.html")
-  context = {
-    "latest_question_list": latest_question_list,
+  random_quote = Quote.objects.get(id=1)
+  viewModel = {
+    "latest_question_list": latest_question_list, 
+    "quote_message": random_quote
   }
-  return HttpResponse(template.render(context, request))
+  return render(request, "polls/index.html", viewModel)
 
 def detail(request, question_id):
   return HttpResponse("You're looking at question %s." % question_id)

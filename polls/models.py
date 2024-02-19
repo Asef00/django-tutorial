@@ -17,3 +17,8 @@ class Choice(models.Model):
   votes = models.IntegerField(default=0)
   def __str__(self) -> str:
     return self.choice_text
+  
+class Quote(models.Model):
+  quote_text = models.CharField(max_length=200)
+  def __str__(self) -> str:
+    return self.quote_text

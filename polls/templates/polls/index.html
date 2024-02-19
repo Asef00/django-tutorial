@@ -1,3 +1,7 @@
+{% if quote_message %}
+<h2>{{ quote_message }}</h2>
+{% endif %}
+
 {% if latest_question_list %}
 <ul>
   {% for question in latest_question_list %}
