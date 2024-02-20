@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.db.models import F
 
 # Create your views here.
 from .models import Question
@@ -43,7 +44,7 @@ def vote(request, question_id):
       },
     )
   else:
-    selected_choice.votes += 1
+    selected_choice.votes = F("votes") + 1
     selected_choice.save()
 
     return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
